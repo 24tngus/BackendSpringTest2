@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<body>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Isbn</th>
+        <th>Genre</th>
+        <th>Created_At</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr th:each="book, bookStat : ${book}">
+        <td th:text="${bookStat.count}"></td> <!-- id 연속적인 수로 출력 -->
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.isbn}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${#temporals.format(book.created_at, 'yyyy-MM-dd hh:mm')}"></td>
+        <td><a th:href="@{/book/edit/{id}(id=${book.id})}">Update</a></td>
+        <td><a th:href="@{/book/delete/{id}(id=${book.id})}">Delete</a></td>
+    </tr>
+</table>
+<p><a href="/book/add">Insert</a></p>
+</body>
+</html>
